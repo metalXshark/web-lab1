@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../public/css/style.css">
+  <title>Лабораторная работа №1</title>
+  <script src="../src/js/Init.js"></script>
+</head>
+<body onload="getTable()">
+<img  alt=""/>
+<div class="general">
+  <div class="top">
+    <div class="title_text">
+      Кононыхин Кирилл Дмитриевич P3224 Вариант №3406
+    </div>
+  </div>
+  <div class="box_1">
+    <div class="chart_box">
+      <div class="chart">
+        <div class="graphic">
+          <svg width="300" height="300">
+            <!--Координатные оси-->
+            <line x1="0" x2="300" y1="150" y2="150"></line>
+            <line x1="150" x2="150" y1="0" y2="300"></line>
+            <!--Стрелочки-->
+            <polygon points="150,0 145,15 155,15"></polygon>
+            <polygon points="300,150 285,145 285,155"></polygon>
+            <!--Прямоугольник во второй четверти-->
+            <polygon points="150,150 50,150 50,100 150,100"></polygon>
+            <!--Треугольник в третьей четверти-->
+            <polygon points="150,150 50,150 150,200"></polygon>
+            <!--Четверть круга в четвертой четверти-->
+            <path d="M150 200 A50 50 0 0 0 200 150 L150 150 Z"></path>
+            <!-- Подписи к осям -->
+            <text x="285" y="135">X</text>
+            <text x="160" y="15">Y</text>
+            <!-- Метки для значений R на оси X -->
+            <line x1="50" x2="50" y1="140" y2="160"></line>
+            <line x1="100" x2="100" y1="140" y2="160"></line>
+            <line x1="200" x2="200" y1="140" y2="160"></line>
+            <line x1="250" x2="250" y1="140" y2="160"></line>
+            <!-- Метки для значений R на оси Y -->
+            <line x1="140" x2="160" y1="50" y2="50"></line>
+            <line x1="140" x2="160" y1="100" y2="100"></line>
+            <line x1="140" x2="160" y1="200" y2="200"></line>
+            <line x1="140" x2="160" y1="250" y2="250"></line>
+            <!-- Значения R на оси X -->
+            <text x="50" y="130" text-anchor="middle" id="-r">-R</text>
+            <text x="98" y="130" text-anchor="middle" id="-r2">-R/2</text>
+            <text x="200" y="130" text-anchor="middle" id="r2">R/2</text>
+            <text x="250" y="130" text-anchor="middle" id="r">R</text>
+            <!-- Значения R на оси Y -->
+            <text x="170" y="52.5" id="r">R</text>
+            <text x="170" y="102.5" id="r2">R/2</text>
+            <text x="170" y="202.5" id="-r2">-R/2</text>
+            <text x="170" y="252.5" id="-r">-R</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="menu_box">
+      <div class="menu">
+        <form class="form" id="form" name="form" onsubmit="receiveSubmit(); return false;">
+          <p>
+            <div class="btn_group">
+              <label for="x_value">Изменение X:</label>
+              <input type="checkbox" value="-5" name="x_values" id="x_minus5">
+              <label for="x_minus5">-5</label>
+              <input type="checkbox" value="-4" id="x_minus4">
+              <label for="x_minus4">-4</label>
+              <input type="checkbox" value="-3" id="x_minus3">
+              <label for="x_minus3">-3</label>
+              <input type="checkbox" value="-2" id="x_minus2">
+              <label for="x_minus2">-2</label>
+              <input type="checkbox" value="-1" id="x_minus1">
+              <label for="x_minus1">-1</label>
+              <input type="checkbox" value="0" id="x_0">
+              <label for="x_0">0</label>
+              <input type="checkbox" value="1" id="x_1">
+              <label for="x_1">1</label>
+              <input type="checkbox" value="2" id="x_2">
+              <label for="x_2">2</label>
+              <input type="checkbox" value="3" id="x_3">
+              <label for="x_3">3</label>
+              <input type="hidden" name="x_value" id="x_value">
+            </div>
+          <p>
+            <label for="y_value">Изменение Y: </label>
+            <input type="text" id="y_value" name="y_value" onchange="checkInput()" oninput="checkInput()">
+          </p>
+          <p>
+              <div id="r_value">
+                <label for="r_value">Изменение R:</label>
+                <label><input type="checkbox" name="r_value" value="1" onclick="deselectOthers(this);changeR()"> 1</label>
+                <label><input type="checkbox" name="r_value" value="1.5" onclick="deselectOthers(this);changeR()"> 1.5</label>
+                <label><input type="checkbox" name="r_value" value="2" onclick="deselectOthers(this);changeR()"> 2</label>
+                <label><input type="checkbox" name="r_value" value="2.5" onclick="deselectOthers(this);changeR()"> 2.5</label>
+                <label><input type="checkbox" name="r_value" value="3" onclick="deselectOthers(this);changeR()"> 3</label>
+              </div>
+          </p>
+          <input id="reset-input" type="reset" value="Очистить" onclick="cleanInput()">
+          <input id="submit" type="submit" value="Проверить">
+          <div class="validation_info"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="box_2">
+    <div class="table">
+      <div class="table_body">
+        <table class="table_stat" id="table">
+          <thead>
+          <tr>
+            <th scope="col">Текущее время</th>
+            <th scope="col">Время выполнения</th>
+            <th scope="col">X</th>
+            <th scope="col">Y</th>
+            <th scope="col">R</th>
+            <th scope="col">Результат</th>
+          </tr>
+          </thead>
+          <tbody></tbody>
+          <tfoot></tfoot>
+        </table>
+      </div>
+      <input class="bottom_button" id="reset-table" type="reset" value="Очистить" onclick="cleanTable()">
+    </div>
+  </div>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="../src/js/Clean.js"></script>
+<script src="../src/js/Update.js"></script>
+<script src="../src/js/Validator.js"></script>
+<script src="../src/js/X.js"></script>
+<script src="../src/js/Y.js"></script>
+<script src="../src/js/R.js"></script>
+</html>
